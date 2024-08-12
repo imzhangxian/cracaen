@@ -1,7 +1,7 @@
 # 使用说明
 ## 环境配置
 1. 安装 python
-下载并安装python 2.10 以上的版本：
+下载并安装python 3.10 以上的版本 (例如 3.12.4)：
 
 https://www.python.org/downloads/
 
@@ -39,7 +39,7 @@ conda env list
 
 4. 安装 Google Chrome 浏览器
 
-Selenium 需要使用 Chrome 浏览器来解析网页和执行 javascript。其他浏览器的目前的支持度都不好。
+Selenium 需要使用 Chrome 浏览器来解析网页和执行 javascript 。其他浏览器的目前的支持度都不好。
 
 5. 安装 scrapy，Selenium，和 scapy-selenium
 
@@ -49,8 +49,13 @@ pip install selenium
 pip install scrapy-selenium
 ```
 
+* selenium 依赖的 webdriver-manager 无法自动安装，需要单独手动执行安装：
+```
+pip install webdriver-mananger
+```
 
-## 执行爬虫程序
+
+## 运行程序
 
 1. 从 github 复制代码库：
 
@@ -109,9 +114,14 @@ scrapy crawl sse_scraper -a starts_page=1 -a ends_page=20 -O outputs/1-20.csv
 ```
 表示抓取从第1页到第20页的所有招股书链接，输出到outputs目录下 1-20.csv 文件。
 
-输出的格式是 csv 格式，第一列是 url，第二列是文件信息，例如
+输出的格式是 csv 格式，第一列是文件 url，第二列是文件名称，中间以逗号隔开，例如
 ```
-
+url,name,files
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-08-09/603310_20240809_XAT9.pdf,巍华新材首次公开发行股票并在主板上市招股说明书,
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-08-01/688721_20240801_5GIW.pdf,龙图光罩首次公开发行股票并在科创板上市招股说明书,
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-07-26/603391_20240726_EZF5.pdf,力聚热能首次公开发行股票并在主板上市招股说明书,
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-07-02/603285_20240702_BGFM.pdf,键邦股份首次公开发行股票并在主板上市招股说明书,
+.........
 ```
 
 4. 通过链接下载文件
@@ -124,7 +134,10 @@ scrapy crawl sse_scraper -a starts_page=1 -a ends_page=20 -O outputs/1-20.csv
 python utils/download_file.py url_list.txt
 ```
 
-输入是一个url列表的文本文件，一行一个 url：
+输入是一个url列表的文本文件，一行一个 url, 例如：
 ```
-
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-08-09/603310_20240809_XAT9.pdf
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-08-01/688721_20240801_5GIW.pdf
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-07-26/603391_20240726_EZF5.pdf
+https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-07-02/603285_20240702_BGFM.pdf
 ```
