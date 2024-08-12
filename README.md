@@ -24,6 +24,11 @@ conda create -n cracaen
 conda activate cracaen
 ```
 
+创建环境之后，安装一下 pip ：
+```
+conda install pip
+```
+
 如果环境装乱掉了，删除环境重新创建一下就可以了(以 cracaen 为例️)：
 ```
 conda remove --name cracaen --all
@@ -140,4 +145,13 @@ https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-08-09/60
 https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-08-01/688721_20240801_5GIW.pdf
 https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-07-26/603391_20240726_EZF5.pdf
 https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-07-02/603285_20240702_BGFM.pdf
+```
+
+4.1 如果发现无法下载文件的情况，可能是 selenium 包和 scrapy-selenium 发生冲突，可以重新创建一个 conda 环境(例如 dl)，只安装 selenium 即可：
+```
+conda create -n dl
+conda activate dl
+conda install pip
+pip install selenium
+python utils/download_file.py url_list.txt
 ```
